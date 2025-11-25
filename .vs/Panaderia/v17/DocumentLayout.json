@@ -1,0 +1,156 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|c:\\users\\roberth_go\\documents\\programacion\\proyectos\\panaderia\\puntodeventa_panaderia_backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|c:\\users\\roberth_go\\documents\\programacion\\proyectos\\panaderia\\puntodeventa_panaderia_backend\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|c:\\users\\roberth_go\\documents\\programacion\\proyectos\\panaderia\\puntodeventa_panaderia_backend\\panaderia.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|solutionrelative:panaderia.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|c:\\users\\roberth_go\\documents\\programacion\\proyectos\\panaderia\\puntodeventa_panaderia_backend\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|solutionrelative:controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|c:\\users\\roberth_go\\documents\\programacion\\proyectos\\panaderia\\puntodeventa_panaderia_backend\\models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|solutionrelative:models\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|c:\\users\\roberth_go\\documents\\programacion\\proyectos\\panaderia\\puntodeventa_panaderia_backend\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|solutionrelative:controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|c:\\users\\roberth_go\\documents\\programacion\\proyectos\\panaderia\\puntodeventa_panaderia_backend\\panaderia.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|solutionrelative:panaderia.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|c:\\users\\roberth_go\\documents\\programacion\\proyectos\\panaderia\\puntodeventa_panaderia_backend\\data\\conexiondb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BD831C72-8B19-4B6C-A4ED-518DD35598B5}|Panaderia.csproj|solutionrelative:data\\conexiondb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ConexionDB.cs",
+              "DocumentMoniker": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\Data\\ConexionDB.cs",
+              "RelativeDocumentMoniker": "Data\\ConexionDB.cs",
+              "ToolTip": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\Data\\ConexionDB.cs",
+              "RelativeToolTip": "Data\\ConexionDB.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwBYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T01:47:47.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Panaderia",
+              "DocumentMoniker": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\Panaderia.csproj",
+              "RelativeDocumentMoniker": "Panaderia.csproj",
+              "ToolTip": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\Panaderia.csproj",
+              "RelativeToolTip": "Panaderia.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-24T19:26:55.592Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductosController.cs",
+              "DocumentMoniker": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\Controllers\\ProductosController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProductosController.cs",
+              "ToolTip": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\Controllers\\ProductosController.cs",
+              "RelativeToolTip": "Controllers\\ProductosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T19:26:40.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T19:21:56.699Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Producto.cs",
+              "DocumentMoniker": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\Models\\Producto.cs",
+              "RelativeDocumentMoniker": "Models\\Producto.cs",
+              "ToolTip": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\Models\\Producto.cs",
+              "RelativeToolTip": "Models\\Producto.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAIwBkAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T04:36:45.664Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "appsettings.Development.json",
+              "ToolTip": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\appsettings.Development.json",
+              "RelativeToolTip": "appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-24T02:24:49.959Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-24T02:24:47.187Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Panaderia.csproj",
+              "DocumentMoniker": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\Panaderia.csproj",
+              "RelativeDocumentMoniker": "Panaderia.csproj",
+              "ToolTip": "C:\\Users\\Roberth_Go\\Documents\\PROGRAMACION\\Proyectos\\Panaderia\\PuntoDeVenta_Panaderia_Backend\\Panaderia.csproj",
+              "RelativeToolTip": "Panaderia.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-11-24T01:26:44.998Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+﻿using MySql.Data.MySqlClient;
+
+namespace Panaderia.Data
+{
+    public class ConexionDB
+    {
+        private string connectionString = string.Empty;
+
+        public ConexionDB()
+        {
+            var builder = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                        .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true, reloadOnChange: true)
+                        .Build();
+            
+            connectionString = builder.GetSection("ConnectionStrings:CadenaSQL").Value ?? throw new InvalidOperationException("La cadena de conexión 'CadenaSQL' no está configurada en appsettings.json");
+        }
+
+        public MySqlConnection getConexion()
+        {
+            return new MySqlConnection(connectionString);
+        }
+    }
+}
