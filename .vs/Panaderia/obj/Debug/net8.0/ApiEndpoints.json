@@ -1,0 +1,191 @@
+[
+  {
+    "ContainingType": "Panaderia.Controllers.ProductosController",
+    "Method": "Listar",
+    "RelativePath": "api/Productos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Panaderia.Controllers.ProductosController",
+    "Method": "Guardar",
+    "RelativePath": "api/Productos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdProducto",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Nombre",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Descripcion",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "IdCategoria",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Precio",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "Stock",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "ReorderLevel",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Costo",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "Imagen",
+        "Type": "System.Byte[]",
+        "IsRequired": false
+      },
+      {
+        "Name": "NombreCategoria",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ImagenBase64",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "imagenArchivo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Panaderia.Controllers.ProductosController",
+    "Method": "Editar",
+    "RelativePath": "api/Productos",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "IdProducto",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Nombre",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Descripcion",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "IdCategoria",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Precio",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "Stock",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "ReorderLevel",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Costo",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "Imagen",
+        "Type": "System.Byte[]",
+        "IsRequired": false
+      },
+      {
+        "Name": "NombreCategoria",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ImagenBase64",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "imagenArchivo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Panaderia.Controllers.ProductosController",
+    "Method": "Eliminar",
+    "RelativePath": "api/Productos/{idProducto}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idProducto",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Panaderia.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Panaderia.WeatherForecast, Panaderia, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]

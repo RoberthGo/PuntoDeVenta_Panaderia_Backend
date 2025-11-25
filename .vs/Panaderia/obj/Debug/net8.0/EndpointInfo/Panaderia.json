@@ -1,0 +1,316 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Panaderia",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Productos": {
+      "get": {
+        "tags": [
+          "Productos"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Productos"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "IdProducto": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Nombre": {
+                    "type": "string"
+                  },
+                  "Descripcion": {
+                    "type": "string"
+                  },
+                  "IdCategoria": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Precio": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Stock": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "ReorderLevel": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Costo": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Imagen": {
+                    "type": "string",
+                    "format": "byte"
+                  },
+                  "NombreCategoria": {
+                    "type": "string"
+                  },
+                  "ImagenBase64": {
+                    "type": "string"
+                  },
+                  "imagenArchivo": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "IdProducto": {
+                  "style": "form"
+                },
+                "Nombre": {
+                  "style": "form"
+                },
+                "Descripcion": {
+                  "style": "form"
+                },
+                "IdCategoria": {
+                  "style": "form"
+                },
+                "Precio": {
+                  "style": "form"
+                },
+                "Stock": {
+                  "style": "form"
+                },
+                "ReorderLevel": {
+                  "style": "form"
+                },
+                "Costo": {
+                  "style": "form"
+                },
+                "Imagen": {
+                  "style": "form"
+                },
+                "NombreCategoria": {
+                  "style": "form"
+                },
+                "ImagenBase64": {
+                  "style": "form"
+                },
+                "imagenArchivo": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Productos"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "IdProducto": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Nombre": {
+                    "type": "string"
+                  },
+                  "Descripcion": {
+                    "type": "string"
+                  },
+                  "IdCategoria": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Precio": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Stock": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "ReorderLevel": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Costo": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Imagen": {
+                    "type": "string",
+                    "format": "byte"
+                  },
+                  "NombreCategoria": {
+                    "type": "string"
+                  },
+                  "ImagenBase64": {
+                    "type": "string"
+                  },
+                  "imagenArchivo": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "IdProducto": {
+                  "style": "form"
+                },
+                "Nombre": {
+                  "style": "form"
+                },
+                "Descripcion": {
+                  "style": "form"
+                },
+                "IdCategoria": {
+                  "style": "form"
+                },
+                "Precio": {
+                  "style": "form"
+                },
+                "Stock": {
+                  "style": "form"
+                },
+                "ReorderLevel": {
+                  "style": "form"
+                },
+                "Costo": {
+                  "style": "form"
+                },
+                "Imagen": {
+                  "style": "form"
+                },
+                "NombreCategoria": {
+                  "style": "form"
+                },
+                "ImagenBase64": {
+                  "style": "form"
+                },
+                "imagenArchivo": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Productos/{idProducto}": {
+      "delete": {
+        "tags": [
+          "Productos"
+        ],
+        "parameters": [
+          {
+            "name": "idProducto",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
