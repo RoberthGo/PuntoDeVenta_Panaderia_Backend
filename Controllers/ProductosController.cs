@@ -25,7 +25,7 @@ namespace Panaderia.Controllers
         // POST: api/Productos
         // Recibe datos + imagen para crear uno nuevo
         [HttpPost]
-        public IActionResult Guardar([FromForm] Producto oProducto, IFormFile imagenArchivo)
+        public IActionResult Guardar([FromForm] Producto oProducto, IFormFile imagenArchivo, [FromHeader] string usuario)
         {
             // Validamos si subió imagen
             if (imagenArchivo != null && imagenArchivo.Length > 0)
@@ -47,7 +47,7 @@ namespace Panaderia.Controllers
                 return BadRequest(ModelState);
             }
 
-            bool respuesta = _productoDatos.Guardar(oProducto);
+            bool respuesta = _productoDatos.Guardar(oProducto, usuario);
 
             if (respuesta)
                 return Ok(new { mensaje = "Producto guardado exitosamente" });
@@ -58,7 +58,7 @@ namespace Panaderia.Controllers
         // PUT: api/Productos
         // Editar productos existentes
         [HttpPut]
-        public IActionResult Editar([FromForm] Producto oProducto, IFormFile imagenArchivo)
+        public IActionResult Editar([FromForm] Producto oProducto, IFormFile imagenArchivo, [FromHeader] string usuario)
         {
             // Lógica de recuperar imagen vieja si no suben una nueva
             if (imagenArchivo != null && imagenArchivo.Length > 0)
@@ -84,7 +84,7 @@ namespace Panaderia.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            bool respuesta = _productoDatos.Editar(oProducto);
+            bool respuesta = _productoDatos.Editar(oProducto, usuario);
 
             if (respuesta)
                 return Ok(new { mensaje = "Producto editado exitosamente" });
@@ -95,9 +95,9 @@ namespace Panaderia.Controllers
         // DELETE: api/Productos/5
         // Elimina por ID
         [HttpDelete("{idProducto}")]
-        public IActionResult Eliminar(int idProducto)
+        public IActionResult Eliminar(int idProducto, [FromHeader] string usuario)
         {
-            bool respuesta = _productoDatos.Eliminar(idProducto);
+            bool respuesta = _productoDatos.Eliminar(idProducto, usuario);
 
             if (respuesta)
                 return Ok(new { mensaje = "Producto eliminado" });

@@ -56,7 +56,7 @@ namespace Panaderia.Data
         }
 
 
-        public bool Guardar(Producto oProducto)
+        public bool Guardar(Producto oProducto, string usuario)
         {
             bool respuesta;
             var cn = new ConexionDB();
@@ -78,9 +78,8 @@ namespace Panaderia.Data
                         cmd.Parameters.AddWithValue("_stock", oProducto.Stock);
                         cmd.Parameters.AddWithValue("_reorderLevel", oProducto.ReorderLevel);
                         cmd.Parameters.AddWithValue("_imagen", oProducto.Imagen ?? (object)DBNull.Value);
+                        cmd.Parameters.AddWithValue("_usuario_que_registra", usuario);
 
-                        // CAMBIAR POR EL USUARIO DEL LOGIN
-                        cmd.Parameters.AddWithValue("_usuario_que_registra", "Roberto (Admin)");
 
                         cmd.ExecuteNonQuery();
                         respuesta = true;
@@ -94,7 +93,7 @@ namespace Panaderia.Data
             return respuesta;
         }
 
-        public bool Editar(Producto oProducto)
+        public bool Editar(Producto oProducto, string usuario)
         {
             bool respuesta;
             var cn = new ConexionDB();
@@ -117,9 +116,7 @@ namespace Panaderia.Data
                         cmd.Parameters.AddWithValue("_stock", oProducto.Stock);
                         cmd.Parameters.AddWithValue("_reorderLevel", oProducto.ReorderLevel);
                         cmd.Parameters.AddWithValue("_imagen", oProducto.Imagen ?? (object)DBNull.Value);
-
-                        // CAMBIAR POR EL USUARIO DEL LOGIN
-                        cmd.Parameters.AddWithValue("_usuario_que_registra", "Roberto (Admin)");
+                        cmd.Parameters.AddWithValue("_usuario_que_registra", usuario);
 
                         cmd.ExecuteNonQuery();
                         respuesta = true;
@@ -133,7 +130,7 @@ namespace Panaderia.Data
             return respuesta;
         }
 
-        public bool Eliminar(int idProducto)
+        public bool Eliminar(int idProducto, string usuario)
         {
             bool respuesta;
             var cn = new ConexionDB();
@@ -147,9 +144,7 @@ namespace Panaderia.Data
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("_id", idProducto);
-
-                        // CAMBIAR POR EL USUARIO DEL LOGIN
-                        cmd.Parameters.AddWithValue("_usuario_que_elimina", "Roberto (Admin)");
+                        cmd.Parameters.AddWithValue("_usuario_que_registra", usuario);
 
                         cmd.ExecuteNonQuery();
                         respuesta = true;
