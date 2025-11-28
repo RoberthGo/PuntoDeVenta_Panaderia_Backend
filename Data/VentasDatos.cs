@@ -95,10 +95,31 @@ namespace Panaderia.Data
             return respuesta;
         }
 
-        public List<ReporteVenta> ObtenerReporteRango(string fechaInicio, string fechaFin, int? idProducto)
+        public List<ReporteVenta> ObtenerReporteRango(string fechaInicio, string fechaFin, List<int> listaIds)
         {
-            var oLista = new List<ReporteVenta>();
+            var oListaFinal = new List<ReporteVenta>();
             var cn = new ConexionDB();
+
+            // Si la lista viene vacía o nula, se envian TODOS los productos
+            if (listaIds == null || listaIds.Count == 0)
+            {
+                return ObtenerReporteRangoIndividual(cn, fechaInicio, fechaFin, null);
+            }
+
+            // Si tiene IDs específicos, se agregan
+            foreach (int id in listaIds)
+            {
+                var resultados = ObtenerReporteRangoIndividual(cn, fechaInicio, fechaFin, id);
+                oListaFinal.AddRange(resultados);
+            }
+
+            return oListaFinal;
+        }
+
+        // Método auxiliar privado para no repetir código de conexión
+        private List<ReporteVenta> ObtenerReporteRangoIndividual(ConexionDB cn, string fechaInicio, string fechaFin, int? idProducto)
+        {
+            var listaTemp = new List<ReporteVenta>();
 
             using (var conexion = cn.getConexion())
             {
@@ -109,14 +130,13 @@ namespace Panaderia.Data
                     cmd.Parameters.AddWithValue("_fechaInicio", DateTime.Parse(fechaInicio));
                     cmd.Parameters.AddWithValue("_fechaFin", DateTime.Parse(fechaFin));
 
-                    // Enviamos el ID del producto o NULL si viene vacío/cero
                     cmd.Parameters.AddWithValue("_idProducto", (idProducto > 0) ? idProducto : DBNull.Value);
 
                     using (var dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
-                            oLista.Add(new ReporteVenta()
+                            listaTemp.Add(new ReporteVenta()
                             {
                                 Clave = Convert.ToInt32(dr["Clave"]),
                                 Nombre = dr["Nombre"].ToString(),
@@ -128,14 +148,32 @@ namespace Panaderia.Data
                     }
                 }
             }
-            return oLista;
+            return listaTemp;
         }
 
-        // MÉTODO 2: REPORTE POR MES Y AÑO
-        public List<ReporteVenta> ObtenerReporteMensual(int mes, int anio, int? idProducto)
+        // Reporte de Mes ANIO
+        public List<ReporteVenta> ObtenerReporteMensual(int mes, int anio, List<int> listaIds)
         {
-            var oLista = new List<ReporteVenta>();
+            var oListaFinal = new List<ReporteVenta>();
             var cn = new ConexionDB();
+
+            if (listaIds == null || listaIds.Count == 0)
+            {
+                return ObtenerReporteMensualIndividual(cn, mes, anio, null);
+            }
+
+            foreach (int id in listaIds)
+            {
+                var resultados = ObtenerReporteMensualIndividual(cn, mes, anio, id);
+                oListaFinal.AddRange(resultados);
+            }
+
+            return oListaFinal;
+        }
+
+        private List<ReporteVenta> ObtenerReporteMensualIndividual(ConexionDB cn, int mes, int anio, int? idProducto)
+        {
+            var listaTemp = new List<ReporteVenta>();
 
             using (var conexion = cn.getConexion())
             {
@@ -145,15 +183,13 @@ namespace Panaderia.Data
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("_mes", mes);
                     cmd.Parameters.AddWithValue("_anio", anio);
-
-                    // Enviamos el ID del producto o NULL si viene vacío/cero
                     cmd.Parameters.AddWithValue("_idProducto", (idProducto > 0) ? idProducto : DBNull.Value);
 
                     using (var dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
                         {
-                            oLista.Add(new ReporteVenta()
+                            listaTemp.Add(new ReporteVenta()
                             {
                                 Clave = Convert.ToInt32(dr["Clave"]),
                                 Nombre = dr["Nombre"].ToString(),
@@ -165,7 +201,8 @@ namespace Panaderia.Data
                     }
                 }
             }
-            return oLista;
+            return listaTemp;
         }
+
     }
 }
