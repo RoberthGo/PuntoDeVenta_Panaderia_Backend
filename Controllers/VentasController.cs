@@ -18,20 +18,24 @@ namespace Panaderia.Controllers
             return Ok(lista);
         }
 
-        // POST: api/Ventas
+        // POST: api/Ventas/Registrar
         // [FromBody] se recibe un JSON
-        [HttpPost]
-        public IActionResult Guardar([FromBody] Ventas oVentas)
+        [HttpPost("Registrar")]
+        public IActionResult Registrar([FromBody] VentaRequest oVenta)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            // Validamos que la lista no venga vacía
+            if (oVenta.Productos == null || oVenta.Productos.Count == 0)
+            {
+                return BadRequest(new { mensaje = "La venta debe contener al menos un producto." });
+            }
 
-            bool respuesta = _ventasDatos.Guardar(oVentas);
+            // Llamamos al método transaccional
+            bool respuesta = _ventasDatos.RegistrarVentaTransaccion(oVenta);
 
             if (respuesta)
-                return Ok(new { mensaje = "Venta registrada exitosamente" });
+                return Ok(new { mensaje = "Venta registrada exitosamente." });
             else
-                return StatusCode(500, new { mensaje = "Error al registrar venta" });
+                return StatusCode(500, new { mensaje = "Error en la transacción. No se guardó nada." });
         }
     }
 }

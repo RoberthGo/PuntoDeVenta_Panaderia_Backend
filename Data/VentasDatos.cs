@@ -17,7 +17,6 @@ namespace Panaderia.Data
                 using (var cmd = new MySqlCommand("sp_ventas_leer", conexion))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     using (var dr = cmd.ExecuteReader())
                     {
                         while (dr.Read())
@@ -36,33 +35,62 @@ namespace Panaderia.Data
             return oLista;
         }
 
-        public bool Guardar(Ventas oVenta)
+        public bool RegistrarVentaTransaccion(VentaRequest oVenta)
         {
-            bool respuesta;
+            bool respuesta = false;
             var cn = new ConexionDB();
 
-            try
+            using (var conexion = cn.getConexion())
             {
-                using (var conexion = cn.getConexion())
+                conexion.Open();
+
+                MySqlTransaction transaccion = conexion.BeginTransaction();
+
+                try
                 {
-                    conexion.Open();
-                    using (var cmd = new MySqlCommand("sp_venta_crear", conexion))
+                    int idVentaGenerada = 0;
+
+                    // Venta
+                    using (var cmd = new MySqlCommand("sp_venta_crear", conexion, transaccion))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("_fecha", oVenta.Fecha);
                         cmd.Parameters.AddWithValue("_idEmpleado", oVenta.IdEmpleado);
-                        cmd.Parameters.AddWithValue("_total", oVenta.Total);
-                        
+
+                        cmd.Parameters.Add("_idVentaGenerado", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+
                         cmd.ExecuteNonQuery();
-                        respuesta = true;
+
+                        idVentaGenerada = Convert.ToInt32(cmd.Parameters["_idVentaGenerado"].Value);
                     }
+
+                    // Insertar Detalles
+                    foreach (var item in oVenta.Productos)
+                    {
+                        using (var cmd = new MySqlCommand("sp_detalle_venta_crear", conexion, transaccion))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            decimal subtotal = item.Cantidad * item.PrecioUnitario;
+
+                            cmd.Parameters.AddWithValue("_idVenta", idVentaGenerada);
+                            cmd.Parameters.AddWithValue("_idProducto", item.IdProducto);
+                            cmd.Parameters.AddWithValue("_cantidad", item.Cantidad);
+                            cmd.Parameters.AddWithValue("_precioUnitario", item.PrecioUnitario);
+                            cmd.Parameters.AddWithValue("_subtotal", subtotal);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    transaccion.Commit();
+                    respuesta = true;
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                respuesta = false;
+                catch (Exception ex)
+                {
+                    transaccion.Rollback();
+                    respuesta = false;
+                    Console.WriteLine("Error Transacción: " + ex.Message);
+                }
             }
             return respuesta;
         }
