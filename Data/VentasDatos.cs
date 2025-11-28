@@ -94,5 +94,78 @@ namespace Panaderia.Data
             }
             return respuesta;
         }
+
+        public List<ReporteVenta> ObtenerReporteRango(string fechaInicio, string fechaFin, int? idProducto)
+        {
+            var oLista = new List<ReporteVenta>();
+            var cn = new ConexionDB();
+
+            using (var conexion = cn.getConexion())
+            {
+                conexion.Open();
+                using (var cmd = new MySqlCommand("sp_reporte_ventas_rango", conexion))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("_fechaInicio", DateTime.Parse(fechaInicio));
+                    cmd.Parameters.AddWithValue("_fechaFin", DateTime.Parse(fechaFin));
+
+                    // Enviamos el ID del producto o NULL si viene vacío/cero
+                    cmd.Parameters.AddWithValue("_idProducto", (idProducto > 0) ? idProducto : DBNull.Value);
+
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            oLista.Add(new ReporteVenta()
+                            {
+                                Clave = Convert.ToInt32(dr["Clave"]),
+                                Nombre = dr["Nombre"].ToString(),
+                                Categoria = dr["Categoria"].ToString(),
+                                UnidadesVendidas = Convert.ToInt32(dr["UnidadesVendidas"]),
+                                MontoTotal = Convert.ToDecimal(dr["MontoTotal"])
+                            });
+                        }
+                    }
+                }
+            }
+            return oLista;
+        }
+
+        // MÉTODO 2: REPORTE POR MES Y AÑO
+        public List<ReporteVenta> ObtenerReporteMensual(int mes, int anio, int? idProducto)
+        {
+            var oLista = new List<ReporteVenta>();
+            var cn = new ConexionDB();
+
+            using (var conexion = cn.getConexion())
+            {
+                conexion.Open();
+                using (var cmd = new MySqlCommand("sp_reporte_ventas_mensual", conexion))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("_mes", mes);
+                    cmd.Parameters.AddWithValue("_anio", anio);
+
+                    // Enviamos el ID del producto o NULL si viene vacío/cero
+                    cmd.Parameters.AddWithValue("_idProducto", (idProducto > 0) ? idProducto : DBNull.Value);
+
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            oLista.Add(new ReporteVenta()
+                            {
+                                Clave = Convert.ToInt32(dr["Clave"]),
+                                Nombre = dr["Nombre"].ToString(),
+                                Categoria = dr["Categoria"].ToString(),
+                                UnidadesVendidas = Convert.ToInt32(dr["UnidadesVendidas"]),
+                                MontoTotal = Convert.ToDecimal(dr["MontoTotal"])
+                            });
+                        }
+                    }
+                }
+            }
+            return oLista;
+        }
     }
 }

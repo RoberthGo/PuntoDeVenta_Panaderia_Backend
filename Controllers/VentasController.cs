@@ -37,5 +37,52 @@ namespace Panaderia.Controllers
             else
                 return StatusCode(500, new { mensaje = "Error en la transacción. No se guardó nada." });
         }
+
+        // 1. REPORTE POR RANGO
+        // Uso GET api/Ventas/ReporteRango?inicio=2025-11-01&fin=2025-11-15&idProducto=5
+        // Si idProducto es NULL, devuelve TODOS los productos
+        [HttpGet("ReporteRango")]
+        public IActionResult ReporteRango(
+            [FromQuery] string inicio,
+            [FromQuery] string fin,
+            [FromQuery] int? idProducto)
+        {
+            if (string.IsNullOrEmpty(inicio) || string.IsNullOrEmpty(fin))
+                return BadRequest(new { mensaje = "Debe enviar 'inicio' y 'fin' (YYYY-MM-DD)" });
+
+            try
+            {
+                var lista = _ventasDatos.ObtenerReporteRango(inicio, fin, idProducto);
+                return Ok(lista);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { mensaje = "Error: " + ex.Message });
+            }
+        }
+
+        // 2. REPORTE MENSUAL
+        // Uso GET api/Ventas/ReporteMensual?mes=11&anio=2025&idProducto=5
+        // Si idProducto es NULL, devuelve TODOS los productos
+        [HttpGet("ReporteMensual")]
+        public IActionResult ReporteMensual(
+            [FromQuery] int mes,
+            [FromQuery] int anio,
+            [FromQuery] int? idProducto)
+        {
+            if (mes < 1 || mes > 12 || anio < 2000)
+                return BadRequest(new { mensaje = "Mes o año inválidos" });
+
+            try
+            {
+                var lista = _ventasDatos.ObtenerReporteMensual(mes, anio, idProducto);
+                return Ok(lista);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { mensaje = "Error: " + ex.Message });
+            }
+        }
+
     }
 }
