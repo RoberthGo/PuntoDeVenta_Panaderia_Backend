@@ -144,7 +144,7 @@ namespace Panaderia.Data
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("_id", idProducto);
-                        cmd.Parameters.AddWithValue("_usuario_que_registra", usuario);
+                        cmd.Parameters.AddWithValue("_usuario_que_elimina", usuario);
 
                         cmd.ExecuteNonQuery();
                         respuesta = true;
