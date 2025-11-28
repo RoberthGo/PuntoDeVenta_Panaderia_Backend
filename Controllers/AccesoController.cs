@@ -34,6 +34,7 @@ namespace Panaderia.Controllers
             }
         }
 
+
         [HttpPost("Registrar")]
         public IActionResult Registrar([FromBody] UsuarioRegistrar oRegistro)
         {
