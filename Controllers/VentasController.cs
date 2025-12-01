@@ -102,5 +102,22 @@ namespace Panaderia.Controllers
             }
         }
 
+
+        // GET: api/Ventas/Detalle/5
+        // Obtener los panes de un ticket específico
+        [HttpGet("Detalle/{idVenta}")]
+        public IActionResult ObtenerDetalles(int idVenta)
+        {
+            try
+            {
+                var lista = _ventasDatos.ObtenerDetalles(idVenta);
+                return Ok(lista);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { mensaje = "Error al obtener detalles: " + ex.Message });
+            }
+        }
+
     }
 }

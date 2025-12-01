@@ -204,5 +204,40 @@ namespace Panaderia.Data
             return listaTemp;
         }
 
+        // MÉTODO: OBTENER DETALLES DE UNA VENTA ESPECÍFICA
+        public List<DetalleVentas> ObtenerDetalles(int idVenta)
+        {
+            var oLista = new List<DetalleVentas>();
+            var cn = new ConexionDB();
+
+            using (var conexion = cn.getConexion())
+            {
+                conexion.Open();
+                using (var cmd = new MySqlCommand("sp_detalle_venta_obtener", conexion))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("_idVenta", idVenta);
+
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            oLista.Add(new DetalleVentas()
+                            {
+                                IdDetalle = Convert.ToInt32(dr["idDetalle"]),
+                                IdVenta = Convert.ToInt32(dr["idVenta"]),
+                                IdProducto = Convert.ToInt32(dr["idProducto"]),
+                                Producto = dr["Producto"].ToString(), 
+                                Cantidad = Convert.ToInt32(dr["cantidad"]),
+                                PrecioUnitario = Convert.ToDecimal(dr["precioUnitario"]),
+                                Subtotal = Convert.ToDecimal(dr["subtotal"])
+                            });
+                        }
+                    }
+                }
+            }
+            return oLista;
+        }
+
     }
 }
