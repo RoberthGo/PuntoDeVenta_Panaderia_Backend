@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Win32;
 using Panaderia.Data;
 using Panaderia.Models;
 
@@ -21,15 +22,20 @@ namespace Panaderia.Controllers
         // POST: api/Empleados
         // [FromBody] se recibe un JSON
         [HttpPost]
-        public IActionResult Guardar([FromBody] Empleado oEmpleado)
+        public IActionResult Guardar([FromBody] EmpleadoRegistro oEmpleado)
         {
+            if (string.IsNullOrEmpty(oEmpleado.Nombre) || string.IsNullOrEmpty(oEmpleado.NombreUsuario))
+            {
+                return BadRequest(new { mensaje = "Faltan datos obligatorios (Nombre, Usuario)" });
+            }
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            bool respuesta = _empleadoDatos.Guardar(oEmpleado);
+            bool respuesta = _empleadoDatos.RegistrarCompleto(oEmpleado);
 
             if (respuesta)
-                return Ok(new { mensaje = "Empleado registrado exitosamente" });
+                return Ok(new { mensaje = "Empleado y usuario creados exitosamente" });
             else
                 return StatusCode(500, new { mensaje = "Error al registrar empleado" });
         }
@@ -60,5 +66,7 @@ namespace Panaderia.Controllers
             else
                 return StatusCode(500, new { mensaje = "Error al eliminar empleado" });
         }
+
+
     }
 }

@@ -130,5 +130,59 @@ namespace Panaderia.Data
             }
             return respuesta;
         }
+
+
+        public bool RegistrarCompleto(EmpleadoRegistro oRegistro)
+        {
+            bool respuesta = false;
+            var cn = new ConexionDB();
+
+            using (var conexion = cn.getConexion())
+            {
+                conexion.Open();
+
+                MySqlTransaction transaccion = conexion.BeginTransaction();
+
+                try
+                {
+                    int idEmpleadoGenerado = 0;
+
+                    using (var cmd = new MySqlCommand("sp_empleado_crear", conexion, transaccion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("_nombre", oRegistro.Nombre);
+                        cmd.Parameters.AddWithValue("_telefono", oRegistro.Telefono);
+                        cmd.Parameters.AddWithValue("_rol", oRegistro.Rol);
+                        cmd.Parameters.AddWithValue("_salario", oRegistro.Salario);
+
+                        cmd.Parameters.Add("_idEmpleadoGenerado", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+
+                        cmd.ExecuteNonQuery();
+
+                        idEmpleadoGenerado = Convert.ToInt32(cmd.Parameters["_idEmpleadoGenerado"].Value);
+                    }
+
+                    using (var cmd = new MySqlCommand("sp_registrar_usuario", conexion, transaccion))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("_idEmpleado", idEmpleadoGenerado);
+                        cmd.Parameters.AddWithValue("_usuario", oRegistro.NombreUsuario);
+                        cmd.Parameters.AddWithValue("_contrasena", oRegistro.Clave);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    transaccion.Commit();
+                    respuesta = true;
+                }
+                catch (Exception ex)
+                {
+                    transaccion.Rollback();
+                    respuesta = false;
+                    Console.WriteLine("Error registro empleado: " + ex.Message);
+                }
+            }
+            return respuesta;
+        }
     }
 }
