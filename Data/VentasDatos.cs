@@ -4,8 +4,15 @@ using System.Data;
 
 namespace Panaderia.Data
 {
+    /// <summary>
+    /// Clase para acceso a datos de ventas y generación de reportes
+    /// </summary>
     public class VentasDatos
     {
+        /// <summary>
+        /// Obtiene el historial de todas las ventas
+        /// </summary>
+        /// <returns>Lista de ventas con fecha, empleado y total</returns>
         public List<Ventas> Listar()
         {
             var oLista = new List<Ventas>();
@@ -35,6 +42,12 @@ namespace Panaderia.Data
             return oLista;
         }
 
+        /// <summary>
+        /// Registra una venta con todos sus productos en una transacción atómica.
+        /// Si falla algún detalle, se hace rollback completo.
+        /// </summary>
+        /// <param name="oVenta">Datos de la venta (empleado y lista de productos)</param>
+        /// <returns>True si toda la transacción fue exitosa</returns>
         public bool RegistrarVentaTransaccion(VentaRequest oVenta)
         {
             bool respuesta = false;
@@ -95,6 +108,13 @@ namespace Panaderia.Data
             return respuesta;
         }
 
+        /// <summary>
+        /// Genera reporte de ventas en un rango de fechas
+        /// </summary>
+        /// <param name="fechaInicio">Fecha inicio (YYYY-MM-DD)</param>
+        /// <param name="fechaFin">Fecha fin (YYYY-MM-DD)</param>
+        /// <param name="listaIds">IDs de productos a filtrar (null o vacío = todos)</param>
+        /// <returns>Lista con totales vendidos por producto</returns>
         public List<ReporteVenta> ObtenerReporteRango(string fechaInicio, string fechaFin, List<int> listaIds)
         {
             var oListaFinal = new List<ReporteVenta>();
@@ -116,7 +136,9 @@ namespace Panaderia.Data
             return oListaFinal;
         }
 
-        // Método auxiliar privado para no repetir código de conexión
+        /// <summary>
+        /// Método auxiliar que ejecuta el SP de reporte por rango para un producto específico o todos
+        /// </summary>
         private List<ReporteVenta> ObtenerReporteRangoIndividual(ConexionDB cn, string fechaInicio, string fechaFin, int? idProducto)
         {
             var listaTemp = new List<ReporteVenta>();
@@ -151,7 +173,13 @@ namespace Panaderia.Data
             return listaTemp;
         }
 
-        // Reporte de Mes ANIO
+        /// <summary>
+        /// Genera reporte de ventas de un mes específico
+        /// </summary>
+        /// <param name="mes">Número del mes (1-12)</param>
+        /// <param name="anio">Año (ej: 2025)</param>
+        /// <param name="listaIds">IDs de productos a filtrar (null o vacío = todos)</param>
+        /// <returns>Lista con totales vendidos por producto en el mes</returns>
         public List<ReporteVenta> ObtenerReporteMensual(int mes, int anio, List<int> listaIds)
         {
             var oListaFinal = new List<ReporteVenta>();
@@ -171,6 +199,9 @@ namespace Panaderia.Data
             return oListaFinal;
         }
 
+        /// <summary>
+        /// Método auxiliar que ejecuta el SP de reporte mensual para un producto específico o todos
+        /// </summary>
         private List<ReporteVenta> ObtenerReporteMensualIndividual(ConexionDB cn, int mes, int anio, int? idProducto)
         {
             var listaTemp = new List<ReporteVenta>();
@@ -204,7 +235,11 @@ namespace Panaderia.Data
             return listaTemp;
         }
 
-        // MÉTODO: OBTENER DETALLES DE UNA VENTA ESPECÍFICA
+        /// <summary>
+        /// Obtiene los productos vendidos en una venta específica (detalle del ticket)
+        /// </summary>
+        /// <param name="idVenta">ID de la venta</param>
+        /// <returns>Lista de productos con cantidad, precio y subtotal</returns>
         public List<DetalleVentas> ObtenerDetalles(int idVenta)
         {
             var oLista = new List<DetalleVentas>();

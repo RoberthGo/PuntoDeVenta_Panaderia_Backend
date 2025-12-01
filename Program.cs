@@ -1,15 +1,19 @@
+// ============================================
+// API REST - Punto de Venta Panadería
+// Backend desarrollado en ASP.NET Core 8
+// Base de datos: MySQL
+// ============================================
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Configuración de servicios
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(); // Documentación interactiva de la API
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Habilitar Swagger solo en desarrollo
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -17,7 +21,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
-
-app.MapControllers();
+app.MapControllers(); // Mapea los endpoints de los controladores
 
 app.Run();

@@ -4,8 +4,15 @@ using System.Data;
 
 namespace Panaderia.Data
 {
+    /// <summary>
+    /// Clase para acceso a datos de empleados (CRUD)
+    /// </summary>
     public class EmpleadoDatos
     {
+        /// <summary>
+        /// Obtiene la lista de todos los empleados
+        /// </summary>
+        /// <returns>Lista de empleados</returns>
         public List<Empleado> Listar()
         {
             var oLista = new List<Empleado>();
@@ -41,6 +48,11 @@ namespace Panaderia.Data
             return oLista;
         }
 
+        /// <summary>
+        /// Inserta un nuevo empleado en la base de datos
+        /// </summary>
+        /// <param name="oEmpleado">Datos del empleado a guardar</param>
+        /// <returns>True si se guardó correctamente, False si hubo error</returns>
         public bool Guardar(Empleado oEmpleado)
         {
             bool respuesta;
@@ -72,6 +84,11 @@ namespace Panaderia.Data
             return respuesta;
         }
 
+        /// <summary>
+        /// Actualiza los datos de un empleado existente
+        /// </summary>
+        /// <param name="oEmpleado">Empleado con los datos actualizados</param>
+        /// <returns>True si se actualizó correctamente, False si hubo error</returns>
         public bool Editar(Empleado oEmpleado)
         {
             bool respuesta;
@@ -104,6 +121,11 @@ namespace Panaderia.Data
             return respuesta;
         }
 
+        /// <summary>
+        /// Elimina un empleado por su ID
+        /// </summary>
+        /// <param name="idEmpleado">ID del empleado a eliminar</param>
+        /// <returns>True si se eliminó correctamente, False si hubo error</returns>
         public bool Eliminar(int idEmpleado)
         {
             bool respuesta;
@@ -132,6 +154,12 @@ namespace Panaderia.Data
         }
 
 
+        /// <summary>
+        /// Registra empleado y su usuario en una transacción atómica.
+        /// Si falla alguna operación, se hace rollback de todo.
+        /// </summary>
+        /// <param name="oRegistro">Datos del empleado y credenciales de usuario</param>
+        /// <returns>True si ambos registros fueron exitosos, False si hubo error</returns>
         public bool RegistrarCompleto(EmpleadoRegistro oRegistro)
         {
             bool respuesta = false;

@@ -1,5 +1,8 @@
 ﻿namespace Panaderia.Models
 {
+    /// <summary>
+    /// DTO para registrar un empleado junto con su usuario en una sola petición
+    /// </summary>
     public class EmpleadoRegistro
     {
         // Datos del Empleado
@@ -8,7 +11,7 @@
         public string Rol { get; set; }
         public decimal Salario { get; set; }
 
-        // Datos del Usuario
+        // Credenciales del Usuario
         public string NombreUsuario { get; set; }
         public string Clave { get; set; }
     }

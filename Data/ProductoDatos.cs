@@ -7,8 +7,15 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Panaderia.Data
 {
+    /// <summary>
+    /// Clase para acceso a datos de productos (CRUD con auditoría)
+    /// </summary>
     public class ProductoDatos
     {
+        /// <summary>
+        /// Obtiene todos los productos con su imagen en bytes
+        /// </summary>
+        /// <returns>Lista de productos</returns>
         public List<Producto> Listar()
         {
             var oLista = new List<Producto>();
@@ -56,6 +63,12 @@ namespace Panaderia.Data
         }
 
 
+        /// <summary>
+        /// Inserta un nuevo producto y registra la acción en auditoría
+        /// </summary>
+        /// <param name="oProducto">Datos del producto</param>
+        /// <param name="usuario">Usuario que realiza la acción (para auditoría)</param>
+        /// <returns>True si se guardó correctamente</returns>
         public bool Guardar(Producto oProducto, string usuario)
         {
             bool respuesta;
@@ -93,6 +106,12 @@ namespace Panaderia.Data
             return respuesta;
         }
 
+        /// <summary>
+        /// Actualiza un producto existente y registra la acción en auditoría
+        /// </summary>
+        /// <param name="oProducto">Producto con datos actualizados</param>
+        /// <param name="usuario">Usuario que realiza la acción (para auditoría)</param>
+        /// <returns>True si se actualizó correctamente</returns>
         public bool Editar(Producto oProducto, string usuario)
         {
             bool respuesta;
@@ -130,6 +149,12 @@ namespace Panaderia.Data
             return respuesta;
         }
 
+        /// <summary>
+        /// Elimina un producto y registra la acción en auditoría
+        /// </summary>
+        /// <param name="idProducto">ID del producto a eliminar</param>
+        /// <param name="usuario">Usuario que realiza la acción (para auditoría)</param>
+        /// <returns>True si se eliminó correctamente</returns>
         public bool Eliminar(int idProducto, string usuario)
         {
             bool respuesta;

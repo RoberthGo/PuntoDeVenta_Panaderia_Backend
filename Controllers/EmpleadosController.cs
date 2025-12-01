@@ -5,12 +5,19 @@ using Panaderia.Models;
 
 namespace Panaderia.Controllers
 {
+    /// <summary>
+    /// Controlador para la gestión de empleados (CRUD)
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class EmpleadosController : ControllerBase
     {
         EmpleadoDatos _empleadoDatos = new EmpleadoDatos();
 
+        /// <summary>
+        /// Obtiene la lista de todos los empleados
+        /// </summary>
+        /// <returns>Lista de empleados en formato JSON</returns>
         // GET: api/Empleados
         [HttpGet]
         public IActionResult Listar()
@@ -19,8 +26,12 @@ namespace Panaderia.Controllers
             return Ok(lista);
         }
 
-        // POST: api/Empleados
-        // [FromBody] se recibe un JSON
+        /// <summary>
+        /// Registra un nuevo empleado junto con su usuario
+        /// </summary>
+        /// <param name="oEmpleado">Objeto JSON con datos del empleado y credenciales</param>
+        /// <returns>Mensaje de éxito o error</returns>
+        // POST: api/Empleados - [FromBody] recibe JSON
         [HttpPost]
         public IActionResult Guardar([FromBody] EmpleadoRegistro oEmpleado)
         {
@@ -40,7 +51,12 @@ namespace Panaderia.Controllers
                 return StatusCode(500, new { mensaje = "Error al registrar empleado" });
         }
 
-        // PUT: api/Empleados
+        /// <summary>
+        /// Actualiza los datos de un empleado existente
+        /// </summary>
+        /// <param name="oEmpleado">Objeto JSON con los datos actualizados</param>
+        /// <returns>Mensaje de éxito o error</returns>
+        // PUT: api/Empleados - [FromBody] recibe JSON
         [HttpPut]
         public IActionResult Editar([FromBody] Empleado oEmpleado)
         {
@@ -55,6 +71,11 @@ namespace Panaderia.Controllers
                 return StatusCode(500, new { mensaje = "Error al actualizar empleado" });
         }
 
+        /// <summary>
+        /// Elimina un empleado por su ID
+        /// </summary>
+        /// <param name="id">ID del empleado a eliminar</param>
+        /// <returns>Mensaje de éxito o error</returns>
         // DELETE: api/Empleados/5
         [HttpDelete("{id}")]
         public IActionResult Eliminar(int id)

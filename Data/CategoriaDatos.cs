@@ -4,8 +4,15 @@ using System.Data;
 
 namespace Panaderia.Data
 {
+    /// <summary>
+    /// Clase para acceso a datos de categorías de productos
+    /// </summary>
     public class CategoriaDatos
     {
+        /// <summary>
+        /// Obtiene todas las categorías disponibles
+        /// </summary>
+        /// <returns>Lista de categorías</returns>
         public List<Categoria> Listar()
         {
             var oLista = new List<Categoria>();

@@ -4,12 +4,21 @@ using Panaderia.Models;
 
 namespace Panaderia.Controllers
 {
+    /// <summary>
+    /// Controlador para autenticación y registro de usuarios
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AccesoController : ControllerBase
     {
         UsuarioDatos _usuarioDatos = new UsuarioDatos();
 
+        /// <summary>
+        /// Valida las credenciales del usuario para iniciar sesión
+        /// </summary>
+        /// <param name="oLogin">JSON con NombreUsuario y Clave</param>
+        /// <returns>Datos del usuario si es válido, o error 401 si no</returns>
+        // POST: api/Acceso/Login - [FromBody] recibe JSON
         [HttpPost("Login")]
         public IActionResult Login([FromBody] UsuarioLogin oLogin)
         {
@@ -35,6 +44,12 @@ namespace Panaderia.Controllers
         }
 
 
+        /// <summary>
+        /// Registra un nuevo usuario asociado a un empleado existente
+        /// </summary>
+        /// <param name="oRegistro">JSON con IdEmpleado, NombreUsuario y Clave</param>
+        /// <returns>Mensaje de éxito o error</returns>
+        // POST: api/Acceso/Registrar - [FromBody] recibe JSON
         [HttpPost("Registrar")]
         public IActionResult Registrar([FromBody] UsuarioRegistrar oRegistro)
         {

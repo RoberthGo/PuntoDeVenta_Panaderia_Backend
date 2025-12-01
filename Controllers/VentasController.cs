@@ -4,12 +4,19 @@ using Panaderia.Models;
 
 namespace Panaderia.Controllers
 {
+    /// <summary>
+    /// Controlador para gestión de ventas y reportes
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class VentasController : ControllerBase
     {
         VentasDatos _ventasDatos = new VentasDatos();
 
+        /// <summary>
+        /// Obtiene el historial de todas las ventas
+        /// </summary>
+        /// <returns>Lista de ventas en formato JSON</returns>
         // GET: api/Ventas
         [HttpGet]
         public IActionResult Listar()
@@ -18,8 +25,12 @@ namespace Panaderia.Controllers
             return Ok(lista);
         }
 
-        // POST: api/Ventas/Registrar
-        // [FromBody] se recibe un JSON
+        /// <summary>
+        /// Registra una nueva venta con sus productos (transacción atómica)
+        /// </summary>
+        /// <param name="oVenta">JSON con IdEmpleado y lista de Productos con cantidad</param>
+        /// <returns>Mensaje de éxito o error</returns>
+        // POST: api/Ventas/Registrar - [FromBody] recibe JSON
         [HttpPost("Registrar")]
         public IActionResult Registrar([FromBody] VentaRequest oVenta)
         {
@@ -38,9 +49,14 @@ namespace Panaderia.Controllers
                 return StatusCode(500, new { mensaje = "Error en la transacción. No se guardó nada." });
         }
 
-        // 1. REPORTE POR RANGO
-        // Uso GET api/Ventas/ReporteRango?inicio=2025-11-01&fin=2025-11-15&ids=1,2,5
-        // Si ids es NULL, devuelve TODOS los productos
+        /// <summary>
+        /// Genera reporte de ventas en un rango de fechas
+        /// </summary>
+        /// <param name="inicio">Fecha inicio (YYYY-MM-DD)</param>
+        /// <param name="fin">Fecha fin (YYYY-MM-DD)</param>
+        /// <param name="ids">IDs de productos separados por coma (opcional, si es null retorna todos)</param>
+        /// <returns>Lista con totales vendidos por producto</returns>
+        // GET: api/Ventas/ReporteRango?inicio=2025-11-01&fin=2025-11-15&ids=1,2,5
         [HttpGet("ReporteRango")]
         public IActionResult ReporteRango(
             [FromQuery] string inicio,
@@ -70,9 +86,14 @@ namespace Panaderia.Controllers
             }
         }
 
-        // 2. REPORTE MENSUAL
-        // Uso GET api/Ventas/ReporteMensual?mes=11&anio=2025&ids=1,2,5
-        // Si ids es NULL, devuelve TODOS los productos
+        /// <summary>
+        /// Genera reporte de ventas de un mes específico
+        /// </summary>
+        /// <param name="mes">Número del mes (1-12)</param>
+        /// <param name="anio">Año (ej: 2025)</param>
+        /// <param name="ids">IDs de productos separados por coma (opcional)</param>
+        /// <returns>Lista con totales vendidos por producto en el mes</returns>
+        // GET: api/Ventas/ReporteMensual?mes=11&anio=2025&ids=1,2,5
         [HttpGet("ReporteMensual")]
         public IActionResult ReporteMensual(
             [FromQuery] int mes,
@@ -103,8 +124,12 @@ namespace Panaderia.Controllers
         }
 
 
+        /// <summary>
+        /// Obtiene los productos de una venta específica (detalle del ticket)
+        /// </summary>
+        /// <param name="idVenta">ID de la venta</param>
+        /// <returns>Lista de productos con cantidad y precio de esa venta</returns>
         // GET: api/Ventas/Detalle/5
-        // Obtener los panes de un ticket específico
         [HttpGet("Detalle/{idVenta}")]
         public IActionResult ObtenerDetalles(int idVenta)
         {

@@ -6,15 +6,20 @@ using System.IO;
 
 namespace Panaderia.Controllers
 {
+    /// <summary>
+    /// Controlador para la gestión de productos (CRUD con auditoría)
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ProductosController : ControllerBase 
     {
         ProductoDatos _productoDatos = new ProductoDatos();
 
-        
+        /// <summary>
+        /// Obtiene la lista de todos los productos con su imagen en Base64
+        /// </summary>
+        /// <returns>Lista de productos en formato JSON</returns>
         // GET: api/Productos
-        // Devuelve el JSON con todos los productos
         [HttpGet]
         public IActionResult Listar()
         {
@@ -22,8 +27,14 @@ namespace Panaderia.Controllers
             return Ok(lista);
         }
 
-        // POST: api/Productos
-        // Recibe datos + imagen para crear uno nuevo
+        /// <summary>
+        /// Crea un nuevo producto con imagen opcional
+        /// </summary>
+        /// <param name="oProducto">Datos del producto (form-data)</param>
+        /// <param name="imagenArchivo">Archivo de imagen del producto</param>
+        /// <param name="usuario">Usuario que realiza la acción (header para auditoría)</param>
+        /// <returns>Mensaje de éxito o error</returns>
+        // POST: api/Productos - [FromForm] recibe form-data con imagen
         [HttpPost]
         public IActionResult Guardar([FromForm] Producto oProducto, IFormFile imagenArchivo, [FromHeader] string usuario)
         {
@@ -55,8 +66,14 @@ namespace Panaderia.Controllers
                 return StatusCode(500, new { mensaje = "Error al guardar en base de datos" });
         }
 
-        // PUT: api/Productos
-        // Editar productos existentes
+        /// <summary>
+        /// Actualiza un producto existente. Si no se envía imagen, conserva la anterior
+        /// </summary>
+        /// <param name="oProducto">Datos actualizados del producto (form-data)</param>
+        /// <param name="imagenArchivo">Nueva imagen (opcional)</param>
+        /// <param name="usuario">Usuario que realiza la acción (header para auditoría)</param>
+        /// <returns>Mensaje de éxito o error</returns>
+        // PUT: api/Productos - [FromForm] recibe form-data
         [HttpPut]
         public IActionResult Editar([FromForm] Producto oProducto, IFormFile imagenArchivo, [FromHeader] string usuario)
         {
@@ -92,8 +109,13 @@ namespace Panaderia.Controllers
                 return StatusCode(500, new { mensaje = "Error al editar el producto" });
         }
 
+        /// <summary>
+        /// Elimina un producto por su ID
+        /// </summary>
+        /// <param name="idProducto">ID del producto a eliminar</param>
+        /// <param name="usuario">Usuario que realiza la acción (header para auditoría)</param>
+        /// <returns>Mensaje de éxito o error</returns>
         // DELETE: api/Productos/5
-        // Elimina por ID
         [HttpDelete("{idProducto}")]
         public IActionResult Eliminar(int idProducto, [FromHeader] string usuario)
         {

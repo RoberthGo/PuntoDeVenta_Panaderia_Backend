@@ -4,8 +4,16 @@ using System.Data;
 
 namespace Panaderia.Data
 {
+    /// <summary>
+    /// Clase para acceso a datos de usuarios (autenticación y registro)
+    /// </summary>
     public class UsuarioDatos
     {
+        /// <summary>
+        /// Valida las credenciales del usuario contra la base de datos
+        /// </summary>
+        /// <param name="oLogin">Credenciales (usuario y contraseña)</param>
+        /// <returns>Objeto Usuario si las credenciales son válidas, null si no</returns>
         public Usuario Validar(UsuarioLogin oLogin)
         {
             Usuario objeto = null;
@@ -38,6 +46,11 @@ namespace Panaderia.Data
             return objeto; 
         }
 
+        /// <summary>
+        /// Registra un nuevo usuario asociado a un empleado
+        /// </summary>
+        /// <param name="oRegistro">Datos del usuario (IdEmpleado, usuario, clave)</param>
+        /// <returns>True si se registró correctamente, False si el usuario ya existe</returns>
         public bool Registrar(UsuarioRegistrar oRegistro)
         {
             bool respuesta;

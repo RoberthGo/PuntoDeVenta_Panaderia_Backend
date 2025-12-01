@@ -4,8 +4,15 @@ using System.Data;
 
 namespace Panaderia.Data
 {
+    /// <summary>
+    /// Clase para acceso a datos de auditoría de productos
+    /// </summary>
     public class AuditoriaDatos
     {
+        /// <summary>
+        /// Obtiene el historial completo de auditoría de productos
+        /// </summary>
+        /// <returns>Lista de registros de auditoría (acciones realizadas sobre productos)</returns>
         public List<AuditoriaProducto> Listar()
         {
             var oLista = new List<AuditoriaProducto>();
